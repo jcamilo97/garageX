@@ -1,22 +1,35 @@
 package tallerex.modules;
 
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import tallerex.modules.settings.SetGarage;
 
 /**
  * ApplicationModule Es la ventana que contiene todos los componentes.
  */
 public class ApplicationModule extends JFrame {
 
+  JPanel contentPane;
   Toolkit t = Toolkit.getDefaultToolkit();
   int[] dimension;
-
+  SetGarage tallerconf;
+  
   public ApplicationModule() {
+    contentPane = new JPanel();
+    contentPane.setBackground(Color.YELLOW);
+    contentPane.setLayout(null);
     setTitle("Tallerex");
     this.screenDimension();
     setBounds(getScreDimension()[0],getScreDimension()[1],getScreDimension()[2],getScreDimension()[3]);
+    this.setconfgarage();
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setContentPane(contentPane);
   }
 
   public void screenDimension(){
@@ -29,6 +42,14 @@ public class ApplicationModule extends JFrame {
     dimension[3] = height;
   }
 
+  public void setconfgarage() {
+    tallerconf = new SetGarage();
+    tallerconf.setLocationG(dimension[2],dimension[3]);
+    tallerconf.setLanzadorItem();
+    tallerconf.getLangarge().setBounds(500, 400,200,50);
+    contentPane.add(tallerconf.getLangarge());
+    contentPane.add(tallerconf.getGaraje());
+  }
   public int[] getScreDimension() {
     return dimension;
   }
