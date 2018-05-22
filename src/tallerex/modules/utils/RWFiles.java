@@ -1,6 +1,7 @@
 package tallerex.modules.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -14,17 +15,17 @@ public class RWFiles {
 
   public RWFiles(){}
 
-  public boolean escribirArchivo(List<String> datos, String name) {
-    boolean success = false;
+  public void escribirArchivo(List<String> datos, String name) {
+    //nFile folder = new File("C:\\Users\\Lenovo\\Documents\\vscode\\javaUN\\Tallerex\\archivos\\cars");
     FileWriter fichero = null;
     PrintWriter pw = null;
     try {
+       // folder.mkdir();
         fichero = new FileWriter("./archivos/"+name+".txt", true);
         pw = new PrintWriter(fichero);
         for (String str : datos) {
              pw.println(str);
         }
-        success = true;
     } catch (Exception e) {
         System.out.println(e.toString());
     } finally {
@@ -33,13 +34,11 @@ public class RWFiles {
             // asegurarnos que se cierra el fichero.
             if (null != fichero) {
                 fichero.close();
-            }
-            success = true;
+            }    
         } catch (Exception e2) {
             e2.getMessage();
         }
     }
-    return success;
 }
 //        leerarchivo();
 

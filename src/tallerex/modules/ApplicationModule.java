@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import tallerex.modules.cars.CarView;
 import tallerex.modules.settings.Garage;
 
 /**
@@ -28,6 +29,7 @@ public class ApplicationModule extends JFrame {
     this.screenDimension();
     setBounds(getScreDimension()[0],getScreDimension()[1],getScreDimension()[2],getScreDimension()[3]);
     this.setgarage();
+    this.setCar();
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setContentPane(contentPane);
   }
@@ -49,6 +51,15 @@ public class ApplicationModule extends JFrame {
     tallerconf.getLangarge().setBounds(30,dimension[3] - 100 ,150,50);
     contentPane.add(tallerconf.getLangarge());
     contentPane.add(tallerconf.getGaraje());
+  }
+
+  public void setCar() {
+    CarView car = new CarView();
+    car.setLocationG(dimension[2],dimension[3]);
+    car.setLanzadorItem();
+    car.getLanCar().setBounds(200,dimension[3] - 100 ,150,50);
+    contentPane.add(car.getLanCar());
+    contentPane.add(car.getCar());
   }
 
   public int[] getScreDimension() {

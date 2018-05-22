@@ -116,8 +116,8 @@ public class Garage implements ActionListener {
     listGaraje.add("name: "+text1.getText());
     listGaraje.add("dirección: "+text2.getText());
     listGaraje.add("telefono: "+text3.getText());
-    IOfiles.escribirArchivo(listGaraje, text1.getText());
-    System.out.println("save data");
+    IOfiles.escribirArchivo(listGaraje,text1.getText());
+    System.out.println("save data  ");
     cleanForm();   
   }
 
