@@ -5,16 +5,18 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import tallerex.modules.utils.RWFiles;
 import javax.swing.JButton;
-
+import java.util.UUID;
 /**
  * SetGarage
  */
-public class SetGarage implements ActionListener {
+public class Garage implements ActionListener {
   int id;
   // String nombre; // name
   String direccion; // addres
@@ -23,10 +25,11 @@ public class SetGarage implements ActionListener {
   JPanel paneliz, panelde, panelab, panelar, panelex;
   JLabel lbnombre, dirreccion, lbtelefono;
   JTextField text1, text2, text3;
-  JButton boton1, boton2;
+  JButton guardar, cancelar;
   JButton lanzadorItem;
+  RWFiles IOfiles;
 
-  public SetGarage() {
+  public Garage() {
 
     frame = new JPanel();
     paneliz = new JPanel();
@@ -41,8 +44,8 @@ public class SetGarage implements ActionListener {
     text1 = new JTextField();
     text2 = new JTextField();
     text3 = new JTextField();
-    boton1 = new JButton();
-    boton2 = new JButton();
+    guardar = new JButton();
+    cancelar = new JButton();
 
     frame.setLayout(new FlowLayout());
     frame.setVisible(true);
@@ -52,8 +55,13 @@ public class SetGarage implements ActionListener {
     dirreccion.setText("dirreccion");
     lbtelefono.setText("Telefono");
 
-    boton1.setText("Aceptar");
-    boton2.setText("Cancelar");
+    guardar.setText("Aceptar");
+    cancelar.setText("Cancelar");
+    
+    guardar.addActionListener(this);
+    cancelar.addActionListener(this);
+    guardar.setActionCommand("actionSave");
+    cancelar.setActionCommand("actionCancel");
 
     paneliz.setLayout(new GridLayout(4, 0));
     paneliz.add(lbnombre);
@@ -72,10 +80,10 @@ public class SetGarage implements ActionListener {
 
     panelab.setLayout(new FlowLayout());
     panelab.setPreferredSize(new Dimension(200, 50));
-    panelab.add(boton1);
-    panelab.add(boton2);
+    panelab.add(guardar);
+    panelab.add(cancelar);
 
-    panelex.setLayout(new java.awt.GridLayout(2,0));
+    panelex.setLayout(new java.awt.GridLayout(2, 0));
     panelex.add(panelar);
     panelex.add(panelab);
 
@@ -83,26 +91,49 @@ public class SetGarage implements ActionListener {
     frame.setVisible(false);
   }
 
-  public void setLanzadorItem(){
+  public void setLanzadorItem() {
     lanzadorItem = new JButton("Confiurar garaje");
+    lanzadorItem.setActionCommand("actionLaunch");
     lanzadorItem.addActionListener(this);
   }
-  
-  public JButton getLangarge(){
+
+  public JButton getLangarge() {
     return lanzadorItem;
   }
+
   public JPanel getGaraje() {
     return frame;
   }
 
-  public void setLocationG(int x, int y){
-    frame.setLocation((x -frame.getWidth())/2, (y - frame.getHeight())/3);
+  public void setLocationG(int x, int y) {
+    frame.setLocation((x - frame.getWidth()) / 2, (y - frame.getHeight()) / 3);
   }
 
+  public void saveData() {
+    IOfiles = new RWFiles();
+    List<String> listGaraje = new ArrayList<>();
+    listGaraje.add("id: "+ UUID.randomUUID());
+    listGaraje.add("name: "+text1.getText());
+    listGaraje.add("dirección: "+text2.getText());
+    listGaraje.add("telefono: "+text3.getText());
+    IOfiles.escribirArchivo(listGaraje, text1.getText());
+    System.out.println("save data");
+    cleanForm();   
+  }
+
+  public void cleanForm() {
+    text1.setText("");
+    text2.setText("");
+    text3.setText("");
+  }
   @Override
   public void actionPerformed(ActionEvent e) {
+    String comando = e.getActionCommand();
+    if (comando.equals("actionSave"))
+      saveData();
+    else if (comando.equals("actionCancel"))
+      cleanForm();
+    else if (comando.equals("actionLaunch"))
     frame.setVisible(!frame.isVisible());
- 
-
   }
 }
