@@ -1,5 +1,6 @@
-package tallerex.modules.settings;
+package com.ubosque.garagexd.garage;
 
+import com.ubosque.garagexd.utils.RWFiles;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -10,7 +11,6 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import tallerex.modules.utils.RWFiles;
 import javax.swing.JButton;
 import java.util.UUID;
 /**

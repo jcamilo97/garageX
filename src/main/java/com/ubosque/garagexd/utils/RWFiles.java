@@ -1,9 +1,11 @@
-package tallerex.modules.utils;
+package com.ubosque.garagexd.utils;
 
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -13,7 +15,24 @@ import java.util.List;
 
 public class RWFiles {
 
+  Gson gson = new Gson();
   public RWFiles(){}
+
+  public void objectToJson(Object obj, String file) {
+       gson = new Gson();
+        String json = gson.toJson(obj);
+        System.out.println(json);
+
+        //2. Convert object to JSON string and save into a file directly
+        try (FileWriter writer = new FileWriter("./files/"+file+".json")) {
+
+            gson.toJson(obj, writer);
+
+        } catch (IOException e) {
+            System.out.println("error "+e.getMessage());
+        }
+  }
+  
 
   public void escribirArchivo(List<String> datos, String name) {
     //nFile folder = new File("C:\\Users\\Lenovo\\Documents\\vscode\\javaUN\\Tallerex\\archivos\\cars");

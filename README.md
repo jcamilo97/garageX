@@ -8,8 +8,3 @@ Is a project for the garages basic administration.
 
 - Java HotSpot(TM) 64-Bit Server VM (build 25.91-b14, mixed mode)
 
-## Run
-```bash <style>backgrond</style>
- $javac -d bin -cp src src\tallerex\Tallerex.java
- $java -cp bin tallerx.Tallerex
-```

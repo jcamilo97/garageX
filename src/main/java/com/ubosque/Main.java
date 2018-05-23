@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tallerex;
+package com.ubosque;
 
-import tallerex.modules.ApplicationModule;
+import com.ubosque.garagexd.ApplicationModule;
 
 /**
  * @author camilo caviedes cañon
  */
-public class Tallerex {
+public class Main {
 
     /**
      * @param args the command line arguments
