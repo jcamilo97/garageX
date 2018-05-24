@@ -111,7 +111,7 @@ public class CarView implements ActionListener {
 
     public void saveCar() {
         RWFiles c = new RWFiles();
-        c.objectToJson(new CarPojo(UUID.randomUUID().toString(), txfmatricula.getText(),txfmarca.getText(),txfmodelo.getText(), txtowner.getText()), "car");
+        c.objectToJson(new CarPojo(txfmatricula.getText(),txfmarca.getText(),txfmodelo.getText(), txtowner.getText()), "car");
         System.out.println("car save");
     }
 

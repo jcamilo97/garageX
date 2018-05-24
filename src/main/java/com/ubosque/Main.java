@@ -16,8 +16,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       ApplicationModule app = new ApplicationModule();
-       app.setVisible(true);
+        ApplicationModule app = new ApplicationModule();
+        app.setgarage();
+        app.setCar();
+        app.setOwner();
+        app.setRepairMan();
+        app.setReparation();
+        app.setVisible(true);
     }
-    
+
 }

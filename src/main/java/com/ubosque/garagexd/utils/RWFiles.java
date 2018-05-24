@@ -19,7 +19,7 @@ public class RWFiles {
   public RWFiles(){}
 
   public void objectToJson(Object obj, String file) {
-       gson = new Gson();
+        gson = new Gson();
         String json = gson.toJson(obj);
         System.out.println(json);
 
@@ -33,6 +33,32 @@ public class RWFiles {
         }
   }
   
+  public void escribirArchivos(Object obj, String name) {
+    //nFile folder = new File("C:\\Users\\Lenovo\\Documents\\vscode\\javaUN\\Tallerex\\archivos\\cars");
+    FileWriter fichero = null;
+    PrintWriter pw = null;
+    try {
+        gson = new Gson();
+        String json = gson.toJson(obj);
+       // folder.mkdir();
+        fichero = new FileWriter("./archivos/"+name+".json", true);
+        pw = new PrintWriter(fichero);
+        pw.println(json);
+        
+    } catch (Exception e) {
+        System.out.println(e.toString());
+    } finally {
+        try {
+            // Nuevamente aprovechamos el finally para 
+            // asegurarnos que se cierra el fichero.
+            if (null != fichero) {
+                fichero.close();
+            }    
+        } catch (Exception e2) {
+            e2.getMessage();
+        }
+    }
+}
 
   public void escribirArchivo(List<String> datos, String name) {
     //nFile folder = new File("C:\\Users\\Lenovo\\Documents\\vscode\\javaUN\\Tallerex\\archivos\\cars");
@@ -59,6 +85,7 @@ public class RWFiles {
         }
     }
 }
+  
 //        leerarchivo();
 
 public void leerarchivo(String archivo) {

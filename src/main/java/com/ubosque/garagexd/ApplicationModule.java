@@ -3,6 +3,8 @@ package com.ubosque.garagexd;
 import com.ubosque.garagexd.garage.Garage;
 import com.ubosque.garagexd.car.CarView;
 import com.ubosque.garagexd.person.owner.OwnerView;
+import com.ubosque.garagexd.person.repairman.RepairManView;
+import com.ubosque.garagexd.reparation.ReparationView;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
@@ -29,9 +31,6 @@ public class ApplicationModule extends JFrame {
     setTitle("Tallerex");
     this.screenDimension();
     setBounds(getScreDimension()[0],getScreDimension()[1],getScreDimension()[2],getScreDimension()[3]);
-    this.setgarage();
-    this.setCar();
-    this.setOwner();
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setContentPane(contentPane);
   }
@@ -72,6 +71,23 @@ public class ApplicationModule extends JFrame {
     owner.getLanOw().setBounds(350,dimension[3] - 100 ,150,50);
     contentPane.add(owner.getLanOw());
     contentPane.add(owner.getOwner());
+  }
+  
+  public void setRepairMan(){
+      RepairManView owner = new RepairManView();
+    owner.setLocationG(dimension[2],dimension[3]);
+    owner.setLanzadorItem();
+    owner.getLanOw().setBounds(510,dimension[3] - 100 ,150,50);
+    contentPane.add(owner.getLanOw());
+    contentPane.add(owner.getRepairMan());
+  }
+  public void setReparation(){
+      ReparationView owner = new ReparationView();
+    owner.setLocationG(dimension[2],dimension[3]);
+    owner.setLanzadorItem();
+    owner.getLanOw().setBounds(680,dimension[3] - 100 ,150,50);
+    contentPane.add(owner.getLanOw());
+    contentPane.add(owner.getRepairMan());
   }
 
   public int[] getScreDimension() {

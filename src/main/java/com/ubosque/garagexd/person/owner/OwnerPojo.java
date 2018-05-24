@@ -6,7 +6,7 @@
 package com.ubosque.garagexd.person.owner;
 
 import com.ubosque.garagexd.person.GenericPojo;
-
+import java.util.UUID;
 /**
  *
  * @author Lenovo
@@ -16,8 +16,12 @@ public class OwnerPojo extends GenericPojo {
     String cars;
     //Car[] cars;
 
-    public OwnerPojo(String cars, String nombre, String apellido, String direccion) {
-        super(nombre, apellido, direccion);
+    public OwnerPojo(String nombre) {
+        super(nombre);
+    }
+
+    public OwnerPojo(UUID uuid, String nombre, String apellido, String direccion, String cars) {
+        super(uuid, nombre, apellido, direccion);
         this.cars = cars;
     }
     

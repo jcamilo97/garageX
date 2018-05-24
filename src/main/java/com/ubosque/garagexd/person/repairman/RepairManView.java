@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ubosque.garagexd.person.owner;
+package com.ubosque.garagexd.person.repairman;
 
+import com.ubosque.garagexd.person.GenericPojo;
 import com.ubosque.garagexd.utils.RWFiles;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -16,19 +17,25 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 /**
  *
  * @author Lenovo
  */
-public class OwnerView implements ActionListener {
+public class RepairManView implements ActionListener {
+    /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
     JPanel frameOwner, paneliz, panelde, panelab, panelar, panelex;
-    JLabel lbname, lbapellido, lbdireccion,lbcars;
-    JTextField txfname, txfapellido, txfdireccion,txfcars;
+    JLabel lbname, lbapellido, lbdireccion;
+    JTextField txfname, txfapellido, txfdireccion;
     JButton lanzadorItem;
     JButton guardar, cancelar;
     
-    public OwnerView(){
+    public RepairManView(){
     frameOwner = new JPanel();
     paneliz = new JPanel();
     panelde = new JPanel();
@@ -38,12 +45,11 @@ public class OwnerView implements ActionListener {
     lbname = new JLabel();
     lbapellido = new JLabel();
     lbdireccion = new JLabel();
-    lbcars = new JLabel();
     
     txfname = new JTextField();
     txfapellido = new JTextField();
     txfdireccion = new JTextField();
-    txfcars = new JTextField();
+    
    
 
     guardar = new JButton();
@@ -56,7 +62,6 @@ public class OwnerView implements ActionListener {
     lbname.setText("nombre");
     lbapellido.setText("apellido");
     lbdireccion.setText("direccion");
-    lbcars.setText("car matricula");
   
 
     guardar.setText("Aceptar");
@@ -71,14 +76,11 @@ public class OwnerView implements ActionListener {
     paneliz.add(lbname);
     paneliz.add(lbapellido);
     paneliz.add(lbdireccion);
-    paneliz.add(lbcars);
 
     panelde.setLayout(new GridLayout(5, 0));
     panelde.add(txfname);
     panelde.add(txfapellido);
     panelde.add(txfdireccion);
-    panelde.add(txfcars);
-
 
     panelar.setLayout(new GridLayout(1, 1));
     panelar.setPreferredSize(new Dimension(300, 150));
@@ -98,24 +100,24 @@ public class OwnerView implements ActionListener {
     frameOwner.setVisible(false);
     }
     
-        public void setLocationG(int x, int y) {
-        frameOwner.setLocation((x - frameOwner.getWidth()) / 2, (y - frameOwner.getHeight()) / 3);
+    public void setLocationG(int x, int y) {
+       frameOwner.setLocation((x - frameOwner.getWidth()) / 2, (y - frameOwner.getHeight()) / 3);
     }
 
     public void setLanzadorItem() {
-        lanzadorItem = new JButton("agregar propietario");
+        lanzadorItem = new JButton("agregar mecanico");
         lanzadorItem.setActionCommand("actionLaunch");
         lanzadorItem.addActionListener(this);
     }
 
-      public JPanel getOwner() {
+      public JPanel getRepairMan() {
         return frameOwner;
     }
 
-    public void saveOwner() {
+    public void saveRepairMan() {
         RWFiles c = new RWFiles();
-        c.escribirArchivos(new OwnerPojo(UUID.randomUUID(), txfname.getText(), txfapellido.getText(), txfdireccion.getText(),txfcars.getText()), "owners");
-        System.out.println("owner save");
+        c.escribirArchivos(new GenericPojo(UUID.randomUUID(), txfname.getText(),txfapellido.getText(),txfdireccion.getText()), "repairmans");
+        System.out.println("car save");
     }
 
     public JButton getLanOw() {
@@ -126,8 +128,9 @@ public class OwnerView implements ActionListener {
         String comando = e.getActionCommand();
         if (comando.equals("actionLaunch")) {
             frameOwner.setVisible(!frameOwner.isVisible());
-        } else if (comando.equals("actionSaveOwner")) {
-            saveOwner();
+        } else if (comando.equals("actionSaveReoair")) {
+            saveRepairMan();
         }
     }
 }
+
