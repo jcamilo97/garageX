@@ -8,6 +8,7 @@ import java.util.UUID;
 /**
  *
  * @author Lenovo
+ *
  */
 public class GenericPojo {
     UUID uuid;
@@ -19,6 +20,11 @@ public class GenericPojo {
         this.nombre = nombre;
     }
     
+     public GenericPojo(String nombre, String apellido, String direccion) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+    }
     
     public GenericPojo(UUID uuid, String nombre, String apellido, String direccion) {
         this.uuid = uuid;
@@ -26,6 +32,7 @@ public class GenericPojo {
         this.apellido = apellido;
         this.direccion = direccion;
     }
-    
+
+   
     
 }

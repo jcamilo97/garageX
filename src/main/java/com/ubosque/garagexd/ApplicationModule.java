@@ -87,7 +87,7 @@ public class ApplicationModule extends JFrame {
     owner.setLanzadorItem();
     owner.getLanOw().setBounds(680,dimension[3] - 100 ,150,50);
     contentPane.add(owner.getLanOw());
-    contentPane.add(owner.getRepairMan());
+    contentPane.add(owner.getReparation());
   }
 
   public int[] getScreDimension() {

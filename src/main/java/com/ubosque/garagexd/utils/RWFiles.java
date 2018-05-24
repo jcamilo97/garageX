@@ -41,7 +41,7 @@ public class RWFiles {
         gson = new Gson();
         String json = gson.toJson(obj);
        // folder.mkdir();
-        fichero = new FileWriter("./archivos/"+name+".json", true);
+        fichero = new FileWriter("./files/"+name+".json", true);
         pw = new PrintWriter(fichero);
         pw.println(json);
         

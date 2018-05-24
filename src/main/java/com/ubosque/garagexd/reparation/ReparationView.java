@@ -12,6 +12,7 @@ import com.ubosque.garagexd.utils.RWFiles;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.UUID;
@@ -25,39 +26,46 @@ import javax.swing.JTextField;
  * @author Lenovo
  */
 public class ReparationView implements ActionListener {
-    JPanel frameOwner, paneliz, panelde, panelab, panelar, panelex;
-    JLabel lbname, lbapellido, lbdireccion;
-    JTextField txfname, txfapellido, txfdireccion;
+    JPanel frameReparation, paneliz, panelde, panelab, panelar, panelex;
+    JLabel lbmatriculaCar, lbOwnerCar, lbReparation, lbKilometros, lbRepairman;
+    JTextField txfMatricula, txfOwnerCar, txfKilometros, txfRepairman;
+    TextArea txfReparation;
     JButton lanzadorItem;
     JButton guardar, cancelar;
     
     public ReparationView(){
-    frameOwner = new JPanel();
+    frameReparation = new JPanel();
     paneliz = new JPanel();
     panelde = new JPanel();
     panelab = new JPanel();
     panelar = new JPanel();
     panelex = new JPanel();
-    lbname = new JLabel();
-    lbapellido = new JLabel();
-    lbdireccion = new JLabel();
+    lbmatriculaCar = new JLabel();
+    lbOwnerCar = new JLabel();
+    lbReparation = new JLabel();
+    lbKilometros = new JLabel();
+    lbRepairman = new JLabel();
     
-    txfname = new JTextField();
-    txfapellido = new JTextField();
-    txfdireccion = new JTextField();
+    txfMatricula = new JTextField();
+    txfOwnerCar = new JTextField();
+    txfReparation = new TextArea(29, 10);
+    txfKilometros = new JTextField();
+    txfRepairman = new JTextField();
     
    
 
     guardar = new JButton();
     cancelar = new JButton();
 
-    frameOwner.setLayout(new FlowLayout());
-    frameOwner.setVisible(true);
-    frameOwner.setSize(400, 300);
+    frameReparation.setLayout(new FlowLayout());
+    frameReparation.setVisible(true);
+    frameReparation.setSize(450, 320);
 
-    lbname.setText("nombre");
-    lbapellido.setText("apellido");
-    lbdireccion.setText("direccion");
+    lbmatriculaCar.setText("Matricula Automovil");
+    lbOwnerCar.setText("Propietario");
+    lbReparation.setText("Reparacion");
+    lbKilometros.setText("Kilometraje");
+    lbRepairman.setText("Mecanico");
   
 
     guardar.setText("Aceptar");
@@ -65,26 +73,30 @@ public class ReparationView implements ActionListener {
 
     guardar.addActionListener(this);
     cancelar.addActionListener(this);
-    guardar.setActionCommand("actionSaveOwner");
-    cancelar.setActionCommand("actionCancelOwner");
+    guardar.setActionCommand("actionSaveReparation");
+    cancelar.setActionCommand("actionCancelReparation");
 
     paneliz.setLayout(new GridLayout(5, 0));
-    paneliz.add(lbname);
-    paneliz.add(lbapellido);
-    paneliz.add(lbdireccion);
+    paneliz.add(lbmatriculaCar);
+    paneliz.add(lbOwnerCar);
+    paneliz.add(lbReparation);
+    paneliz.add(lbKilometros);
+    paneliz.add(lbRepairman);
 
-    panelde.setLayout(new GridLayout(5, 0));
-    panelde.add(txfname);
-    panelde.add(txfapellido);
-    panelde.add(txfdireccion);
+    panelde.setLayout(new GridLayout(5, 0, 0, 10));
+    panelde.add(txfMatricula);
+    panelde.add(txfOwnerCar);
+    panelde.add(txfReparation);
+    panelde.add(txfKilometros);
+    panelde.add(txfRepairman);
 
     panelar.setLayout(new GridLayout(1, 1));
-    panelar.setPreferredSize(new Dimension(300, 150));
+    panelar.setPreferredSize(new Dimension(440, 220));
     panelar.add(paneliz);
     panelar.add(panelde);
 
     panelab.setLayout(new FlowLayout());
-    panelab.setPreferredSize(new Dimension(200, 80));
+    panelab.setPreferredSize(new Dimension(300, 80));
     panelab.add(guardar);
     panelab.add(cancelar);
 
@@ -92,12 +104,12 @@ public class ReparationView implements ActionListener {
     panelex.add(panelar);
     panelex.add(panelab);
 
-    frameOwner.add(panelex);
-    frameOwner.setVisible(false);
+    frameReparation.add(panelex);
+    frameReparation.setVisible(false);
     }
     
     public void setLocationG(int x, int y) {
-       frameOwner.setLocation((x - frameOwner.getWidth()) / 2, (y - frameOwner.getHeight()) / 3);
+       frameReparation.setLocation((x - frameReparation.getWidth()) / 2, (y - frameReparation.getHeight()) / 3);
     }
 
     public void setLanzadorItem() {
@@ -106,14 +118,17 @@ public class ReparationView implements ActionListener {
         lanzadorItem.addActionListener(this);
     }
 
-      public JPanel getRepairMan() {
-        return frameOwner;
+      public JPanel getReparation() {
+        return frameReparation;
     }
 
-    public void saveRepairMan() {
+    public void saveReparation() {
         RWFiles c = new RWFiles();
-        c.escribirArchivos(new ReparationPojo( new GenericPojo(txfname.getText()),new OwnerPojo(txfname.getText()), new CarPojo(txfapellido.getText()),"frenos",125), "reparations");
-        System.out.println("car save");
+        GenericPojo repairman = new GenericPojo(txfMatricula.getText());
+        OwnerPojo owner = new OwnerPojo(txfOwnerCar.getText());
+        CarPojo car = new CarPojo(txfMatricula.getText());
+        c.escribirArchivos(new ReparationPojo(repairman, owner, car ,"frenos",125), "reparations");
+        System.out.println("reparation save");
     }
 
     public JButton getLanOw() {
@@ -123,9 +138,9 @@ public class ReparationView implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
         if (comando.equals("actionLaunch")) {
-            frameOwner.setVisible(!frameOwner.isVisible());
-        } else if (comando.equals("actionSaveReoair")) {
-            saveRepairMan();
+            frameReparation.setVisible(!frameReparation.isVisible());
+        } else if (comando.equals("actionSaveReparation")) {
+            saveReparation();
         }
     }
 }

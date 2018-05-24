@@ -114,7 +114,7 @@ public class OwnerView implements ActionListener {
 
     public void saveOwner() {
         RWFiles c = new RWFiles();
-        c.escribirArchivos(new OwnerPojo(UUID.randomUUID(), txfname.getText(), txfapellido.getText(), txfdireccion.getText(),txfcars.getText()), "owners");
+        c.escribirArchivos(new OwnerPojo(txfname.getText(), txfapellido.getText(), txfdireccion.getText(),txfcars.getText()), "owners");
         System.out.println("owner save");
     }
 
