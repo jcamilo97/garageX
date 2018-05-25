@@ -6,7 +6,6 @@
 package com.ubosque.garagexd.car;
 
 import com.ubosque.garagexd.person.owner.OwnerPojo;
-import com.ubosque.garagexd.person.owner.OwnerView;
 import java.util.UUID;
 
 /**
@@ -27,12 +26,12 @@ public class CarPojo {
         this.matricula = matricula;
     }
 
-    public CarPojo(String matricula, String marca, String modelo, String owners) {
+    public CarPojo(String matricula, String marca, String modelo, OwnerPojo owner) {
         this.uuid = UUID.randomUUID();
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
-        this.owners = owners;
+        this.owner = owner;
     }
 
     public CarPojo(String matricula, OwnerPojo owner, String reparaciones) {

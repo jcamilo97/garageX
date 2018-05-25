@@ -1,5 +1,6 @@
 package com.ubosque.garagexd.car;
 
+import com.ubosque.garagexd.person.owner.OwnerPojo;
 import com.ubosque.garagexd.utils.RWFiles;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -111,7 +112,8 @@ public class CarView implements ActionListener {
 
     public void saveCar() {
         RWFiles c = new RWFiles();
-        c.objectToJson(new CarPojo(txfmatricula.getText(),txfmarca.getText(),txfmodelo.getText(), txtowner.getText()), "car");
+        OwnerPojo owner = new OwnerPojo(txtowner.getText());
+        c.escribirArchivos(new CarPojo(txfmatricula.getText(),txfmarca.getText(),txfmodelo.getText(), owner), "cars");
         System.out.println("car save");
     }
 
