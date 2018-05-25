@@ -10,19 +10,20 @@ import java.util.UUID;
  * @author Lenovo
  *
  */
-public class GenericPojo {
+public class PersonPojo {
     UUID uuid;
     String nombre;
     String apellido;
     String direccion;
     
-     public GenericPojo(String nombre, String apellido, String direccion) {
+    public PersonPojo(String nombre, String apellido, String direccion) {
+        this.uuid = UUID.randomUUID();
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
     }
-    
-    public GenericPojo(UUID uuid, String nombre, String apellido, String direccion) {
+     
+    public PersonPojo(UUID uuid, String nombre, String apellido, String direccion) {
         this.uuid = uuid;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -45,7 +46,7 @@ public class GenericPojo {
         return direccion;
     }
 
-    public GenericPojo(String nombre) {
+    public PersonPojo(String nombre) {
         this.nombre = nombre;
     }
    

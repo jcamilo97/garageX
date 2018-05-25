@@ -6,14 +6,12 @@
 package com.ubosque.garagexd.person.owner;
 
 import com.ubosque.garagexd.car.CarPojo;
-import com.ubosque.garagexd.person.GenericPojo;
-import java.util.UUID;
-
+import com.ubosque.garagexd.person.PersonPojo;
 /**
  *
  * @author Lenovo
  */
-public class OwnerPojo extends GenericPojo {
+public class OwnerPojo extends PersonPojo {
 
     String car;
     CarPojo[] cars;
@@ -35,23 +33,8 @@ public class OwnerPojo extends GenericPojo {
      * @param    address Address of owner 
      * @param    cars --In a future will change
      */
-    public OwnerPojo(String name, String lastname, String address, String cars) {
+    public OwnerPojo(String name, String lastname, String address, CarPojo[] cars) {
         super(name, lastname, address);
-        this.car = cars;
-    }
-
-    public OwnerPojo(CarPojo[] cars, String nombre, String apellido, String direccion) {
-        super(nombre, apellido, direccion);
-        this.cars = cars;
-    }
-
-    public OwnerPojo(CarPojo[] cars, UUID uuid, String nombre, String apellido, String direccion) {
-        super(uuid, nombre, apellido, direccion);
-        this.cars = cars;
-    }
-
-    public OwnerPojo(CarPojo[] cars, String nombre) {
-        super(nombre);
         this.cars = cars;
     }
 

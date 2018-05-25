@@ -27,73 +27,70 @@ public class CarView implements ActionListener {
     JButton guardar, cancelar;
 
     public CarView() {
-         frameCar = new JPanel();
-    paneliz = new JPanel();
-    panelde = new JPanel();
-    panelab = new JPanel();
-    panelar = new JPanel();
-    panelex = new JPanel();
-    lbmatricula = new JLabel();
-    lbmarca = new JLabel();
-    lbmodelo = new JLabel();
-    lbowner = new JLabel();
-    
-    txfmatricula = new JTextField();
-    txfmarca = new JTextField();
-    txfmodelo = new JTextField();
-    txtowner = new JTextField();
-   
+        frameCar = new JPanel();
+        paneliz = new JPanel();
+        panelde = new JPanel();
+        panelab = new JPanel();
+        panelar = new JPanel();
+        panelex = new JPanel();
+        lbmatricula = new JLabel();
+        lbmarca = new JLabel();
+        lbmodelo = new JLabel();
+        lbowner = new JLabel();
 
-    guardar = new JButton();
-    cancelar = new JButton();
+        txfmatricula = new JTextField();
+        txfmarca = new JTextField();
+        txfmodelo = new JTextField();
+        txtowner = new JTextField();
 
-    frameCar.setLayout(new FlowLayout());
-    frameCar.setVisible(true);
-    frameCar.setSize(400, 300);
+        guardar = new JButton();
+        cancelar = new JButton();
 
-    lbmatricula.setText("matricula");
-    lbmarca.setText("marca");
-    lbmodelo.setText("modelo");
-    lbowner.setText("propietario");
-  
+        frameCar.setLayout(new FlowLayout());
+        frameCar.setVisible(true);
+        frameCar.setSize(400, 300);
 
-    guardar.setText("Aceptar");
-    cancelar.setText("Cancelar");
+        lbmatricula.setText("matricula");
+        lbmarca.setText("marca");
+        lbmodelo.setText("modelo");
+        lbowner.setText("propietario");
 
-    guardar.addActionListener(this);
-    cancelar.addActionListener(this);
-    guardar.setActionCommand("actionSaveCar");
-    cancelar.setActionCommand("actionCancel");
+        guardar.setText("Aceptar");
+        cancelar.setText("Cancelar");
 
-    paneliz.setLayout(new GridLayout(5, 0));
-    paneliz.add(lbmatricula);
-    paneliz.add(lbmarca);
-    paneliz.add(lbmodelo);
-    paneliz.add(lbowner);
+        guardar.addActionListener(this);
+        cancelar.addActionListener(this);
+        guardar.setActionCommand("actionSaveCar");
+        cancelar.setActionCommand("actionCancel");
 
-    panelde.setLayout(new GridLayout(5, 0));
-    panelde.add(txfmatricula);
-    panelde.add(txfmarca);
-    panelde.add(txfmodelo);
-    panelde.add(txtowner);
+        paneliz.setLayout(new GridLayout(5, 0));
+        paneliz.add(lbmatricula);
+        paneliz.add(lbmarca);
+        paneliz.add(lbmodelo);
+        paneliz.add(lbowner);
 
+        panelde.setLayout(new GridLayout(5, 0));
+        panelde.add(txfmatricula);
+        panelde.add(txfmarca);
+        panelde.add(txfmodelo);
+        panelde.add(txtowner);
 
-    panelar.setLayout(new GridLayout(1, 1));
-    panelar.setPreferredSize(new Dimension(300, 150));
-    panelar.add(paneliz);
-    panelar.add(panelde);
+        panelar.setLayout(new GridLayout(1, 1));
+        panelar.setPreferredSize(new Dimension(300, 150));
+        panelar.add(paneliz);
+        panelar.add(panelde);
 
-    panelab.setLayout(new FlowLayout());
-    panelab.setPreferredSize(new Dimension(200, 80));
-    panelab.add(guardar);
-    panelab.add(cancelar);
+        panelab.setLayout(new FlowLayout());
+        panelab.setPreferredSize(new Dimension(200, 80));
+        panelab.add(guardar);
+        panelab.add(cancelar);
 
-    panelex.setLayout(new java.awt.GridLayout(2, 0));
-    panelex.add(panelar);
-    panelex.add(panelab);
+        panelex.setLayout(new java.awt.GridLayout(2, 0));
+        panelex.add(panelar);
+        panelex.add(panelab);
 
-    frameCar.add(panelex);
-    frameCar.setVisible(false);
+        frameCar.add(panelex);
+        frameCar.setVisible(false);
     }
 
     public void setLocationG(int x, int y) {
@@ -113,7 +110,7 @@ public class CarView implements ActionListener {
     public void saveCar() {
         RWFiles c = new RWFiles();
         OwnerPojo owner = new OwnerPojo(txtowner.getText());
-        c.escribirArchivos(new CarPojo(txfmatricula.getText(),txfmarca.getText(),txfmodelo.getText(), owner), "cars");
+        c.escribirArchivos(new CarPojo(txfmatricula.getText(), txfmarca.getText(), txfmodelo.getText(), owner), "cars");
         System.out.println("car save");
     }
 

@@ -5,7 +5,7 @@
  */
 package com.ubosque.garagexd.person.repairman;
 
-import com.ubosque.garagexd.person.GenericPojo;
+import com.ubosque.garagexd.person.PersonPojo;
 import com.ubosque.garagexd.utils.RWFiles;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -116,7 +116,7 @@ public class RepairManView implements ActionListener {
 
     public void saveRepairMan() {
         RWFiles c = new RWFiles();
-        c.escribirArchivos(new GenericPojo(UUID.randomUUID(), txfname.getText(),txfapellido.getText(),txfdireccion.getText()), "repairmans");
+        c.escribirArchivos(new PersonPojo(UUID.randomUUID(), txfname.getText(),txfapellido.getText(),txfdireccion.getText()), "repairmans");
         System.out.println("car save");
     }
 

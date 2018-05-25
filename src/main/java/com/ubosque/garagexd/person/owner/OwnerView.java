@@ -5,6 +5,7 @@
  */
 package com.ubosque.garagexd.person.owner;
 
+import com.ubosque.garagexd.car.CarPojo;
 import com.ubosque.garagexd.utils.RWFiles;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -98,7 +99,7 @@ public class OwnerView implements ActionListener {
     frameOwner.setVisible(false);
     }
     
-        public void setLocationG(int x, int y) {
+    public void setLocationG(int x, int y) {
         frameOwner.setLocation((x - frameOwner.getWidth()) / 2, (y - frameOwner.getHeight()) / 3);
     }
 
@@ -114,7 +115,8 @@ public class OwnerView implements ActionListener {
 
     public void saveOwner() {
         RWFiles c = new RWFiles();
-        c.escribirArchivos(new OwnerPojo(txfname.getText(), txfapellido.getText(), txfdireccion.getText(),txfcars.getText()), "owners");
+        CarPojo[] d = {new CarPojo(txfcars.getText())};
+        c.escribirArchivos(new OwnerPojo(txfname.getText(), txfapellido.getText(), txfdireccion.getText(), d), "owners");
         System.out.println("owner save");
     }
 

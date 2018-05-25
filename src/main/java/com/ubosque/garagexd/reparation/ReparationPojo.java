@@ -6,7 +6,7 @@ package com.ubosque.garagexd.reparation;
  * and open the template in the editor.
  */
 import com.ubosque.garagexd.car.CarPojo;
-import com.ubosque.garagexd.person.GenericPojo;
+import com.ubosque.garagexd.person.PersonPojo;
 import com.ubosque.garagexd.person.owner.OwnerPojo;
 import java.util.UUID;
 
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class ReparationPojo {
 
     UUID uuid;
-    GenericPojo repairman;
+    PersonPojo repairman;
     OwnerPojo propietario;
     CarPojo car;
     String reparation;
@@ -34,7 +34,7 @@ public class ReparationPojo {
      * @param reparation  Description og reparation
      * @param km  Km of car
      */
-    public ReparationPojo(GenericPojo repairman, OwnerPojo owner, CarPojo car, String reparation, int km) {
+    public ReparationPojo(PersonPojo repairman, OwnerPojo owner, CarPojo car, String reparation, int km) {
         this.uuid = UUID.randomUUID();
         this.repairman = repairman;
         this.propietario = owner;
@@ -47,7 +47,7 @@ public class ReparationPojo {
         return uuid;
     }
 
-    public GenericPojo getRepairman() {
+    public PersonPojo getRepairman() {
         return repairman;
     }
 

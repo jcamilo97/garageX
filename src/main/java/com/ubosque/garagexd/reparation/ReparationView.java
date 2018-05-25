@@ -6,7 +6,7 @@
 package com.ubosque.garagexd.reparation;
 
 import com.ubosque.garagexd.car.CarPojo;
-import com.ubosque.garagexd.person.GenericPojo;
+import com.ubosque.garagexd.person.PersonPojo;
 import com.ubosque.garagexd.person.owner.OwnerPojo;
 import com.ubosque.garagexd.querys.CarQuery;
 import com.ubosque.garagexd.utils.RWFiles;
@@ -131,7 +131,7 @@ public class ReparationView implements ActionListener {
 
     public void saveReparation() {
         RWFiles c = new RWFiles();
-        GenericPojo repairman = new GenericPojo(txfMatricula.getText());
+        PersonPojo repairman = new PersonPojo(txfMatricula.getText());
         OwnerPojo owner = new OwnerPojo(txfOwnerCar.getText());
         CarPojo car = new CarPojo(txfMatricula.getText());
         c.escribirArchivos(new ReparationPojo(repairman, owner, car ,"frenos",125), "reparations");

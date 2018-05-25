@@ -17,7 +17,7 @@ import java.util.List;
 public class RWFiles {
 
   Gson gson = new Gson();
-  private static List<String> cars = new ArrayList<>();
+  private static List<String> resulSet;
   public RWFiles(){}
 
   public void objectToJson(Object obj, String file) {
@@ -93,6 +93,8 @@ public class RWFiles {
 public static List<String> leerarchivo(String archivo) {
     FileReader fr = null;
     BufferedReader br = null;
+    resulSet = new ArrayList<>();
+    resulSet.clear();
     try {
         // Apertura del fichero y creacion de BufferedReader para poder
         // hacer una lectura comoda (disponer del metodo readLine()).
@@ -103,10 +105,10 @@ public static List<String> leerarchivo(String archivo) {
         String linea;
         while ((linea = br.readLine()) != null) {
             if (!" ".equals(linea)) {
-                cars.add(linea);
+                resulSet.add(linea);
             }
         }
-        return cars;
+        return resulSet;
     } catch (IOException e) {
         e.printStackTrace();
     } finally {
@@ -122,7 +124,7 @@ public static List<String> leerarchivo(String archivo) {
         }
        
     }
-     return cars;
+     return resulSet;
 }
 
   
