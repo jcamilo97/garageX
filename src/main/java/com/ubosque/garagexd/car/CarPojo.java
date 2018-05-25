@@ -5,6 +5,7 @@
  */
 package com.ubosque.garagexd.car;
 
+import com.ubosque.garagexd.person.owner.OwnerPojo;
 import com.ubosque.garagexd.person.owner.OwnerView;
 import java.util.UUID;
 
@@ -17,7 +18,7 @@ public class CarPojo {
     String matricula;
     String marca;
     String modelo;
-    OwnerView owner;
+    OwnerPojo owner;
     String owners;
     String reparaciones;
 
@@ -34,7 +35,7 @@ public class CarPojo {
         this.owners = owners;
     }
 
-    public CarPojo(String matricula, OwnerView owner, String reparaciones) {
+    public CarPojo(String matricula, OwnerPojo owner, String reparaciones) {
         this.uuid = UUID.randomUUID();
         this.matricula = matricula;
         this.owner = owner;
@@ -46,6 +47,34 @@ public class CarPojo {
         this.matricula = matricula;
         this.owners = owner;
         this.reparaciones = reparaciones;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public OwnerPojo getOwner() {
+        return owner;
+    }
+
+    public String getOwners() {
+        return owners;
+    }
+
+    public String getReparaciones() {
+        return reparaciones;
     }
     
     

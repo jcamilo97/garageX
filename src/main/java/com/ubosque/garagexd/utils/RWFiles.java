@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ import java.util.List;
 public class RWFiles {
 
   Gson gson = new Gson();
+  private static List<String> cars = new ArrayList<>();
   public RWFiles(){}
 
   public void objectToJson(Object obj, String file) {
@@ -45,7 +47,7 @@ public class RWFiles {
         pw = new PrintWriter(fichero);
         pw.println(json);
         
-    } catch (Exception e) {
+    } catch (IOException e) {
         System.out.println(e.toString());
     } finally {
         try {
@@ -54,7 +56,7 @@ public class RWFiles {
             if (null != fichero) {
                 fichero.close();
             }    
-        } catch (Exception e2) {
+        } catch (IOException e2) {
             e2.getMessage();
         }
     }
@@ -88,24 +90,24 @@ public class RWFiles {
   
 //        leerarchivo();
 
-public void leerarchivo(String archivo) {
+public static List<String> leerarchivo(String archivo) {
     FileReader fr = null;
     BufferedReader br = null;
     try {
         // Apertura del fichero y creacion de BufferedReader para poder
         // hacer una lectura comoda (disponer del metodo readLine()).
         //archivo = new File("./archivos/filer.txt");
-        fr = new FileReader("./archivos/"+archivo+".txt");
+        fr = new FileReader("./files/"+archivo+".json");
         br = new BufferedReader(fr);
-
         // Lectura del fichero
         String linea;
         while ((linea = br.readLine()) != null) {
             if (!" ".equals(linea)) {
-                System.out.println(linea);                              
+                cars.add(linea);
             }
         }
-    } catch (Exception e) {
+        return cars;
+    } catch (IOException e) {
         e.printStackTrace();
     } finally {
         // En el finally cerramos el fichero, para asegurarnos
@@ -114,11 +116,13 @@ public void leerarchivo(String archivo) {
         try {
             if (null != fr) {
                 fr.close();
-            }
-        } catch (Exception e2) {
+            }         
+        } catch (IOException e2) {
             e2.printStackTrace();
         }
+       
     }
+     return cars;
 }
 
   

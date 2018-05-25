@@ -15,10 +15,6 @@ public class GenericPojo {
     String nombre;
     String apellido;
     String direccion;
-
-    public GenericPojo(String nombre) {
-        this.nombre = nombre;
-    }
     
      public GenericPojo(String nombre, String apellido, String direccion) {
         this.nombre = nombre;
@@ -33,6 +29,25 @@ public class GenericPojo {
         this.direccion = direccion;
     }
 
+      public UUID getUuid() {
+        return uuid;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public GenericPojo(String nombre) {
+        this.nombre = nombre;
+    }
    
     
 }

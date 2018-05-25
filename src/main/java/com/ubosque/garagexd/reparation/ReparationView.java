@@ -8,6 +8,7 @@ package com.ubosque.garagexd.reparation;
 import com.ubosque.garagexd.car.CarPojo;
 import com.ubosque.garagexd.person.GenericPojo;
 import com.ubosque.garagexd.person.owner.OwnerPojo;
+import com.ubosque.garagexd.querys.CarQuery;
 import com.ubosque.garagexd.utils.RWFiles;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -15,6 +16,9 @@ import java.awt.GridLayout;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -29,6 +33,7 @@ public class ReparationView implements ActionListener {
     JPanel frameReparation, paneliz, panelde, panelab, panelar, panelex;
     JLabel lbmatriculaCar, lbOwnerCar, lbReparation, lbKilometros, lbRepairman;
     JTextField txfMatricula, txfOwnerCar, txfKilometros, txfRepairman;
+    List<JTextField> fields = new ArrayList<>();
     TextArea txfReparation;
     JButton lanzadorItem;
     JButton guardar, cancelar;
@@ -51,7 +56,10 @@ public class ReparationView implements ActionListener {
     txfReparation = new TextArea(29, 10);
     txfKilometros = new JTextField();
     txfRepairman = new JTextField();
-    
+    fields.add(txfMatricula);
+    fields.add(txfOwnerCar);
+    fields.add(txfRepairman);
+    fields.add(txfKilometros);
    
 
     guardar = new JButton();
@@ -128,7 +136,19 @@ public class ReparationView implements ActionListener {
         OwnerPojo owner = new OwnerPojo(txfOwnerCar.getText());
         CarPojo car = new CarPojo(txfMatricula.getText());
         c.escribirArchivos(new ReparationPojo(repairman, owner, car ,"frenos",125), "reparations");
+        cacelReparation();
         System.out.println("reparation save");
+    }
+    
+    public void cacelReparation(){
+        Iterator<JTextField> fielstxt = fields.iterator();
+        while (fielstxt.hasNext()) {
+            JTextField next = fielstxt.next();
+            next.setText(" ");
+        }
+        CarQuery c = new CarQuery();
+        c.CarReparationAll();
+        txfReparation.setText(" ");
     }
 
     public JButton getLanOw() {
@@ -137,10 +157,18 @@ public class ReparationView implements ActionListener {
       @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
-        if (comando.equals("actionLaunch")) {
-            frameReparation.setVisible(!frameReparation.isVisible());
-        } else if (comando.equals("actionSaveReparation")) {
-            saveReparation();
+        switch (comando) {
+            case "actionLaunch":
+                frameReparation.setVisible(!frameReparation.isVisible());
+                break;
+            case "actionSaveReparation":
+                saveReparation();
+                break;
+            case "actionCancelReparation":
+                cacelReparation();
+                break;
+            default:
+                break;
         }
     }
 }

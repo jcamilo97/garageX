@@ -43,4 +43,28 @@ public class ReparationPojo {
         this.kilometros = km;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public GenericPojo getRepairman() {
+        return repairman;
+    }
+
+    public OwnerPojo getPropietario() {
+        return propietario;
+    }
+
+    public CarPojo getCar() {
+        return car;
+    }
+
+    public String getReparation() {
+        return reparation;
+    }
+
+    public int getKilometros() {
+        return kilometros;
+    }
+
 }
