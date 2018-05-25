@@ -22,6 +22,7 @@ public class Main {
         app.setOwner();
         app.setRepairMan();
         app.setReparation();
+        app.setQueryComponent();
         app.setVisible(true);
     }
 

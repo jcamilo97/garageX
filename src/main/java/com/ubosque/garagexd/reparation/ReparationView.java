@@ -66,7 +66,6 @@ public class ReparationView implements ActionListener {
     cancelar = new JButton();
 
     frameReparation.setLayout(new FlowLayout());
-    frameReparation.setVisible(true);
     frameReparation.setSize(450, 320);
 
     lbmatriculaCar.setText("Matricula Automovil");

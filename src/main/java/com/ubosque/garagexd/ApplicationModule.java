@@ -4,6 +4,7 @@ import com.ubosque.garagexd.garage.Garage;
 import com.ubosque.garagexd.car.CarView;
 import com.ubosque.garagexd.person.owner.OwnerView;
 import com.ubosque.garagexd.person.repairman.RepairManView;
+import com.ubosque.garagexd.querys.QueryView;
 import com.ubosque.garagexd.reparation.ReparationView;
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -82,12 +83,21 @@ public class ApplicationModule extends JFrame {
     contentPane.add(owner.getRepairMan());
   }
   public void setReparation(){
-      ReparationView owner = new ReparationView();
+    ReparationView owner = new ReparationView();
     owner.setLocationG(dimension[2],dimension[3]);
     owner.setLanzadorItem();
     owner.getLanOw().setBounds(680,dimension[3] - 100 ,150,50);
     contentPane.add(owner.getLanOw());
     contentPane.add(owner.getReparation());
+  }
+  
+  public void setQueryComponent(){
+    QueryView query = new QueryView(dimension[2],dimension[3]);
+    query.setLocationG(dimension[2],dimension[3]);
+    query.setLanzadorItem();
+    query.getLanzadorItem().setBounds(680+170, dimension[3] - 100 ,150,50);
+    contentPane.add(query.getLanzadorItem());
+    contentPane.add(query.getFrameQuery());
   }
 
   public int[] getScreDimension() {
