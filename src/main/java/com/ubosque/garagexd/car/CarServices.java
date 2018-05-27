@@ -26,8 +26,7 @@ public class CarServices {
         String result = "";
         OwnerPojo owner = gson.fromJson(owners.get(0), OwnerPojo.class); 
         for(int j=0; j<= cars.size() -1; j++) {
-            String next = cars.get(j);
-            System.out.println(next);           
+            String next = cars.get(j);         
             CarPojo car = gson.fromJson(next, CarPojo.class);
             for (int i = 0; i <= owners.size() - 1; i++) {
                 owner = gson.fromJson(owners.get(i), OwnerPojo.class);
@@ -35,9 +34,9 @@ public class CarServices {
                         i = owners.size();
                 
             }
-            result += "|vehiculo: " + car.getMarca()+" "+ car.getModelo() + " |matricula: " + car.getMatricula()
-                    + " |propietario: "+owner.getNombre()+" "+owner.getApellido()+" |direccion: "
-                    +owner.getDireccion()+"|\n";
+            result += " | vehiculo: " + car.getMarca()+" "+ car.getModelo() + " | matricula: " + car.getMatricula()
+                    + " | propietario: "+owner.getNombre()+" "+owner.getApellido()+" | direccion: "
+                    +owner.getDireccion()+" |\n";
         }
         return result;
     }

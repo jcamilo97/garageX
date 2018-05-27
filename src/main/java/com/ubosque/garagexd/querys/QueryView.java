@@ -5,6 +5,8 @@
  */
 package com.ubosque.garagexd.querys;
 
+import com.ubosque.garagexd.car.CarServices;
+import com.ubosque.garagexd.reparation.ReparationServices;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -28,6 +30,8 @@ public class QueryView implements ActionListener{
     JPanel frameQuery,panelex, paneliz, panelde, paneldeA, paneldeAa;
     TextArea result;
     CarQuery c;
+    CarServices carservice;
+    ReparationServices reparationsercive;
 
     public QueryView(int x, int y) {
         frameQuery = new JPanel(new FlowLayout());
@@ -38,6 +42,7 @@ public class QueryView implements ActionListener{
         paneliz = new JPanel();
         paneldeA = new JPanel();
         paneldeAa = new JPanel();
+        
         querycompnent = new JLabel("Consultas");
         inputquerycar = new JTextField();
         reparations = new JButton("mecanicos"); // 1 vehiculos y persona que los reparo
@@ -86,8 +91,15 @@ public class QueryView implements ActionListener{
         
         frameQuery.add(panelex);
         frameQuery.setVisible(false);
-        
-        c = new CarQuery();
+        carservice = new CarServices();
+        reparationsercive = new ReparationServices();
+    }
+    
+    public void SearchReparationsByCar(){
+        panelex.add(paneliz);
+        panelex.add(paneldeA);
+        panelex.remove(panelde);
+        panelex.add(result);
     }
     
     public void setLocationG(int x, int y) {
@@ -117,15 +129,17 @@ public class QueryView implements ActionListener{
                 frameQuery.setVisible(!frameQuery.isVisible());
                 break;
             case "1":
-                //saveReparation();
+                result.setText(reparationsercive.ReparationAllbyRepairman());
                 break;
             case "2":
-                //cacelReparation();
+                result.setText(carservice.CarAll());
                 break;
             case "3":
+                SearchReparationsByCar();
+                //result.setText(reparationsercive.ReparationByCar("1234cvb"));
                 break;
             case "4":
-                result.setText(c.CarReparationAll());
+                result.setText(reparationsercive.ReparationAll());
                 break;
             default:
                 break;

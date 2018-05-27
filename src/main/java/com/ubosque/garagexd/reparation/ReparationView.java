@@ -131,7 +131,7 @@ public class ReparationView implements ActionListener {
 
     public void saveReparation() {
         RWFiles c = new RWFiles();
-        PersonPojo repairman = new PersonPojo(txfMatricula.getText());
+        PersonPojo repairman = new PersonPojo(txfRepairman.getText());
         OwnerPojo owner = new OwnerPojo(txfOwnerCar.getText());
         CarPojo car = new CarPojo(txfMatricula.getText());
         c.escribirArchivos(new ReparationPojo(repairman, owner, car ,"frenos",125), "reparations");
