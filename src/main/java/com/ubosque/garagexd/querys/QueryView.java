@@ -24,86 +24,92 @@ import javax.swing.JTextField;
  * @author Lenovo
  */
 public class QueryView implements ActionListener{
-    JLabel querycompnent;
+    JLabel querycompnent, lblSearchCar;
     JTextField inputquerycar;
-    JButton reparations, cars, carReparations, carsReparated, btnquery, lanzadorItem;
-    JPanel frameQuery,panelex, paneliz, panelde, paneldeA, paneldeAa;
+    JButton reparations, cars, carsReparated, btnSearchCar, lanzadorItem;
+    JPanel frameQuery,panelex, paneliz, panelde, paneldeA, pnlSearchCar;
     TextArea result;
     CarQuery c;
     CarServices carservice;
     ReparationServices reparationsercive;
 
     public QueryView(int x, int y) {
-        frameQuery = new JPanel(new FlowLayout());
-        frameQuery.setSize(x-30, y-120);
+        frameQuery = new JPanel();
+        frameQuery.setLayout(null);
+        frameQuery.setSize(x-16, y-120);
         
         panelex = new JPanel();
         panelde = new JPanel();
         paneliz = new JPanel();
         paneldeA = new JPanel();
-        paneldeAa = new JPanel();
+        pnlSearchCar = new JPanel();
         
         querycompnent = new JLabel("Consultas");
-        inputquerycar = new JTextField();
+        lblSearchCar = new JLabel("Buscar Auto por matricula");
+        inputquerycar = new JTextField(10);
         reparations = new JButton("mecanicos"); // 1 vehiculos y persona que los reparo
         cars = new JButton("Vehiculos"); // 2 vehiculos y su dueño
-        carReparations = new JButton("reparacion vehiculo"); // 3 historial de reparaciones de un vehiculo
         carsReparated = new JButton("reparaciones"); // 4 todas las reparaciones
-        btnquery = new JButton("buscar");
-        result = new TextArea(50,70);
+        btnSearchCar = new JButton("buscar");
+        result = new TextArea();
         
         reparations.addActionListener(this);
         cars.addActionListener(this);
-        carReparations.addActionListener(this);
         carsReparated.addActionListener(this);
-        btnquery.addActionListener(this);
+        btnSearchCar.addActionListener(this);
         reparations.setActionCommand("1");
         cars.setActionCommand("2");
-        carReparations.setActionCommand("3");
         carsReparated.setActionCommand("4");
-        btnquery.setActionCommand("buscarCar");
-        
-        paneliz.setLayout(new GridLayout(6, 3,100,20));
+        btnSearchCar.setActionCommand("3");
+
+        paneliz.setLayout(null);
+        int wpaneliz =  x*20/100;
+        paneliz.setSize(wpaneliz,y);
+        paneliz.setLocation(0, 0);
         paneliz.setBackground(Color.red);
         paneliz.add(querycompnent);
         paneliz.add(reparations);
         paneliz.add(cars);
-        paneliz.add(carReparations);
         paneliz.add(carsReparated);
         
-        panelde.setLayout(new GridLayout(1, 0, 0, 10));
-        panelde.add(result);
+        querycompnent.setBounds(20,20,paneliz.getWidth()-20, 50);
+        reparations.setBounds(20,querycompnent.getY()+60,paneliz.getWidth()-40, 50);    
+        cars.setBounds(20,(reparations.getY()+60),paneliz.getWidth()-40, 50);   
+        carsReparated.setBounds(20,cars.getY()+60,paneliz.getWidth()-40, 50);
+        
+        panelde.setLayout(null);
+        System.out.println(paneliz.getWidth());
+        panelde.setSize(x-paneliz.getWidth(), y);
+        panelde.setLocation(paneliz.getWidth(), 0);
         panelde.setBackground(Color.BLUE);
         
-        paneldeAa.add(inputquerycar);
-        paneldeAa.add(btnquery);
-        paneldeA.setLayout(new GridLayout(2, 0, 0, 10));
-        paneldeA.add(paneldeAa);
-        //paneldeA.add(result);
-        paneldeA.setVisible(false);
+        pnlSearchCar.setLocation(0, 0);
+        pnlSearchCar.setSize(x-paneliz.getWidth(), 40);
+        pnlSearchCar.add(lblSearchCar);
+        pnlSearchCar.add(inputquerycar);
+        pnlSearchCar.add(btnSearchCar);
+
+        result.setBounds(0, 40, panelde.getWidth(),panelde.getHeight()-40);
+        panelde.add(result);
+        panelde.add(pnlSearchCar);
         
-        panelex.setLayout(new java.awt.GridLayout(1, 1));
-        panelex.setPreferredSize(new Dimension(x-30, y-120));
+        panelex.setLayout(null);
+        panelex.setSize(x,y);
+        panelex.setLocation(0, 0);
+        panelex.setBackground(Color.GREEN);
+       
         panelex.add(paneliz);
         panelex.add(panelde);
-        //panelex.add(paneldeA);
-        panelex.setBackground(Color.GREEN);
-        
+               
         frameQuery.add(panelex);
         frameQuery.setVisible(false);
+        frameQuery.setBackground(Color.PINK);
         carservice = new CarServices();
         reparationsercive = new ReparationServices();
     }
-    
-    public void SearchReparationsByCar(){
-        panelex.add(paneliz);
-        panelex.add(paneldeA);
-        panelex.remove(panelde);
-        panelex.add(result);
-    }
-    
+     
     public void setLocationG(int x, int y) {
-       frameQuery.setLocation(10, 5);
+       frameQuery.setLocation(0, 5);
     }
     
      public void setLanzadorItem() {
@@ -120,6 +126,9 @@ public class QueryView implements ActionListener{
         return frameQuery;
     }
      
+    public void searchCar(){
+     result.setText(reparationsercive.ReparationByCar(inputquerycar.getText()));
+    }
     
       @Override
     public void actionPerformed(ActionEvent e) {
@@ -135,8 +144,7 @@ public class QueryView implements ActionListener{
                 result.setText(carservice.CarAll());
                 break;
             case "3":
-                SearchReparationsByCar();
-                //result.setText(reparationsercive.ReparationByCar("1234cvb"));
+                searchCar();
                 break;
             case "4":
                 result.setText(reparationsercive.ReparationAll());

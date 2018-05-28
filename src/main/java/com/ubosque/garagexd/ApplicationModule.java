@@ -38,8 +38,8 @@ public class ApplicationModule extends JFrame {
 
   public void screenDimension(){
     dimension = new int[4];
-    int width = (int) (t.getScreenSize().getWidth() * 0.90);
-    int height = (int) (t.getScreenSize().getHeight() * 0.85);
+    int width = (int) (t.getScreenSize().getWidth() * 0.75);
+    int height = (int) (t.getScreenSize().getHeight() * 0.80);
     dimension[0] = ((int) t.getScreenSize().getWidth() - width) / 2;
     dimension[1] = ((int) t.getScreenSize().getHeight() - height) / 2;
     dimension[2] = width;
