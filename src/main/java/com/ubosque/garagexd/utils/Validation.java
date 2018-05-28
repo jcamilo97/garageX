@@ -19,5 +19,17 @@ public class Validation {
             return false;
         }
     }
+    
+    private static boolean isEmpy(String n){
+        return !(n.trim().isEmpty());
+    }
+    
+    private static boolean validateFormEmpy(String[] fiels){
+        boolean v = false;
+        for (String fiel : fiels) {
+            v = isEmpy(fiel);
+        }
+        return v;
+    }
 
 }
